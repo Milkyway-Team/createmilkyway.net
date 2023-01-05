@@ -2,10 +2,10 @@ const express = require('express')
 const fs = require('fs')
 const https = require('https')
 const app = express()
-const port = 443
+const securePort = 443
+const port = 80
 
-var privateKey = fs.readFileSync( 'privkey.pem' );
-var certificate = fs.readFileSync( 'cert.pem' );
+const RUNMODE = "DEV" //DEV or PRODUCTION
 
 app.get('/www/favicon.jpg', (req, res) => {
   res.sendFile('/root/webserver/www/favicon.jpg');
@@ -13,6 +13,10 @@ app.get('/www/favicon.jpg', (req, res) => {
 
 app.get('/sitemap.txt', (req, res) => {
   res.sendFile('/root/webserver/sitemap.txt');
+})
+
+app.get('/www/js/index.jsx', (req, res) => {
+  res.sendFile('/root/webserver/www/js/index.jsx');
 })
 
 app.get('/googleecd4c64bd68c095c.html', (req, res) => {
@@ -43,8 +47,17 @@ app.get('/', (req, res) => {
   res.sendFile('/root/webserver/www/index.html');
 })
 
-
-https.createServer({
+if (RUNMODE.toLowerCase() == "production") {
+  var privateKey = fs.readFileSync( 'privkey.pem' );
+  var certificate = fs.readFileSync( 'cert.pem' );
+  https.createServer({
     key: privateKey,
     cert: certificate
-}, app).listen(port);
+  }, app).listen(securePort);
+  console.log(`Production server started on port ${port}`)
+} else {
+  app.listen(port, () => {
+    console.log(`Development server started on http://localhost:${port}`)
+  })
+  
+}

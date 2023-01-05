@@ -5,6 +5,10 @@
   <title>Create: Milkyway</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="icon" type="image/x-icon" href="/www/favicon.jpg">
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>  
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script type="text/babel" src="/www/js/index.jsx"></script>
   <style>
     .navbar {
 	padding: 0;
@@ -43,17 +47,6 @@
   </style>
 </head>
 <body>
-  <div class="root">
-    <div class="navbar">
-	<ul class="navbar-ul">
-	  <li><a class="active" href="">Create: Milkyway</a></li>
-	  <li><a href="community">Community</a></li>
-	  <li><a href="community-server">Community Server</a></li>
-	  <li><a href="about">About</a></li>
-	</ul>
-    </div>
-    <h1>Nothing too see here :P (yet)</h1>  
-    <p class="btm-text">Copyright 2023 Milkyway Communtity ©</p>
-  <div>
+  <div id="root"><div>
 </body>
 </html>
