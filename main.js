@@ -11,6 +11,10 @@ app.get('/www/favicon.jpg', (req, res) => {
   res.sendFile('/root/webserver/www/favicon.jpg');
 })
 
+app.get('/src/navbar.png', (req, res) => {
+  res.sendFile('/root/webserver/www/src/navbar.png');
+})
+
 app.get('/sitemap.txt', (req, res) => {
   res.sendFile('/root/webserver/sitemap.txt');
 })
