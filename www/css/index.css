@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'minecraft';
+    src: url('minecraft_font.tff') format('tff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+.navbar {
+    padding: 0;
+}
+.navbar-ul {
+    width: 100%;
+}
+h1 { 
+    padding-top: 50px;
+    padding-left: 50px; 
+}
+.btm-text {
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-image: url('/src/navbar.png');
+    background-repeat: repeat-x;
+    background-size: contain;
+    image-rendering: crisp-edges;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    font-family: minecraft;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 19px 16px;
+    text-decoration: none;
+}
+
+
+.navbar-item:hover {
+    text-decoration-thickness: 10pxs;
+}

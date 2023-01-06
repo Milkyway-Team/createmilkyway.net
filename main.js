@@ -15,8 +15,16 @@ app.get('/src/navbar.png', (req, res) => {
   res.sendFile('/root/webserver/www/src/navbar.png');
 })
 
+app.get('/minecraft_font.tff', (req, res) => {
+  res.sendFile('/root/webserver/www/minecraft_font.tff');
+})
+
 app.get('/sitemap.txt', (req, res) => {
   res.sendFile('/root/webserver/sitemap.txt');
+})
+
+app.get('/css/index.css', (req, res) => {
+  res.sendFile('/root/webserver/www/css/index.css');
 })
 
 app.get('/www/js/index.jsx', (req, res) => {

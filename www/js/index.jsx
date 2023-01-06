@@ -12,10 +12,10 @@ function NavBar() {
     return (
         <div className="navbar">
             <ul className="navbar-ul">
-                <li><a className="active" href="">Create: Milkyway</a></li>
-                <li><a href="community">Community</a></li>
-                <li><a href="community-server">Community Server</a></li>
-                <li><a href="about">About</a></li>
+                <li><a className="navbar-item active" href="">Create: Milkyway</a></li>
+                <li><a className="navbar-item" href="community">Community</a></li>
+                <li><a className="navbar-item" href="community-server">Community Server</a></li>
+                <li><a className="navbar-item" href="about">About</a></li>
             </ul>
         </div>
     )
