@@ -5,7 +5,7 @@ const app = express()
 const securePort = 443
 const port = 80
 
-const RUNMODE = "DEV" //DEV or PRODUCTION
+const RUNMODE = "PRODUCTION" //DEV or PRODUCTION
 
 app.get('/www/favicon.jpg', (req, res) => {
   res.sendFile('/root/webserver/www/favicon.jpg');
@@ -16,7 +16,7 @@ app.get('/src/navbar.png', (req, res) => {
 })
 
 app.get('/minecraft_font.tff', (req, res) => {
-  res.sendFile('/root/webserver/www/minecraft_font.tff');
+  res.sendFile('/root/webserver/www/minecraft_font.ttf');
 })
 
 app.get('/sitemap.txt', (req, res) => {
@@ -66,7 +66,7 @@ if (RUNMODE.toLowerCase() == "production") {
     key: privateKey,
     cert: certificate
   }, app).listen(securePort);
-  console.log(`Production server started on port ${port}`)
+  console.log(`Production server started on port ${securePort}`)
 } else {
   app.listen(port, () => {
     console.log(`Development server started on http://localhost:${port}`)

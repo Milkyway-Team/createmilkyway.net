@@ -1,6 +1,7 @@
 @font-face {
     font-family: 'minecraft';
-    src: url('minecraft_font.tff') format('tff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    src: url('../minecraft_font.tff') format('tff'),
+         url('../minecraft_font.tff') format('truetype')
 }
 .navbar {
     padding: 0;
@@ -21,11 +22,11 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: visible;
     background-image: url('/src/navbar.png');
     background-repeat: repeat-x;
-    background-size: contain;
-    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    background-size: 38em, 100%;
 }
 
 li {
@@ -39,6 +40,7 @@ li a {
     text-align: center;
     padding: 19px 16px;
     text-decoration: none;
+    overflow: visible;
 }
 
 
