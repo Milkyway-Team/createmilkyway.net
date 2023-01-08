@@ -1,8 +1,13 @@
 @font-face {
-    font-family: 'minecraft';
-    src: url('../minecraft_font.tff') format('tff'),
-         url('../minecraft_font.tff') format('truetype')
+    font-family: 'Minecraft-Regular';
+    src:url('../fonts/Minecraft-Regular.ttf.woff') format('woff'),
+        url('../fonts/Minecraft-Regular.ttf.svg#Minecraft-Regular') format('svg'),
+        url('../fonts/Minecraft-Regular.ttf.eot'),
+        url('../fonts/Minecraft-Regular.ttf.eot?#iefix') format('embedded-opentype'); 
+    font-weight: normal;
+    font-style: normal;
 }
+
 .navbar {
     padding: 0;
 }
@@ -34,7 +39,7 @@ li {
 }
 
 li a {
-    font-family: minecraft;
+    font-family: 'Minecraft-Regular';
     display: block;
     color: white;
     text-align: center;

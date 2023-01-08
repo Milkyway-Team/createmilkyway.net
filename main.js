@@ -5,7 +5,7 @@ const app = express()
 const securePort = 443
 const port = 80
 
-const RUNMODE = "PRODUCTION" //DEV or PRODUCTION
+const RUNMODE = "DEV" //DEV or PRODUCTION
 
 app.get('/www/favicon.jpg', (req, res) => {
   res.sendFile('/root/webserver/www/favicon.jpg');
@@ -15,8 +15,14 @@ app.get('/src/navbar.png', (req, res) => {
   res.sendFile('/root/webserver/www/src/navbar.png');
 })
 
-app.get('/minecraft_font.tff', (req, res) => {
-  res.sendFile('/root/webserver/www/minecraft_font.ttf');
+app.get('/fonts/Minecraft-Regular.ttf.eot', (req, res) => {
+  res.sendFile('/root/webserver/www/fonts/Minecraft-Regular.ttf.eot');
+})
+app.get('/fonts/Minecraft-Regular.ttf.svg', (req, res) => {
+  res.sendFile('/root/webserver/www/fonts/Minecraft-Regular.ttf.svg');
+})
+app.get('/fonts/Minecraft-Regular.ttf.woff', (req, res) => {
+  res.sendFile('/root/webserver/www/fonts/Minecraft-Regular.ttf.woff');
 })
 
 app.get('/sitemap.txt', (req, res) => {
