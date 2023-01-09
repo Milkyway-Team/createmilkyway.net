@@ -48,7 +48,32 @@ li a {
     overflow: visible;
 }
 
+.nb-button-menu {
+    font-family: 'Minecraft-Regular';
+    display: none;
+    color: white;
+    padding-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    position: absolute;
+    right: 0%;
+}
 
 .navbar-item:hover {
     text-decoration-thickness: 10pxs;
+}
+
+@media only screen and (max-width: 550px) {
+    .nb-hide-on-mobile {
+        display: none;
+    }
+    .nb-button-menu {
+        display: block;
+    }
 }
