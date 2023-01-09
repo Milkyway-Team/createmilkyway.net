@@ -1,9 +1,12 @@
 function MainContent() {
     return (
         <div className="main-content">
-            
-            <h1>Nothing too see here :P (yet)</h1>  
-            <p className="btm-text">Copyright 2023 Milkyway Communtity ©</p>
+            <div className="main-image-container">
+                <img src="/images/main.png" className="img-bg-main"></img>
+                <h1 className="main-image-container-text">Create: Milkyway</h1> 
+                <h3 className="main-image-container-subtext">A semi-hardcore Create modpack... With a twist!</h3> 
+            </div>
+            <p className="btm-text">Copyright 2023 Milkyway Communtity</p>
         </div>
     )
 }

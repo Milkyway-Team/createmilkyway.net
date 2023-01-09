@@ -25,6 +25,10 @@ app.get('/fonts/Minecraft-Regular.ttf.woff', (req, res) => {
   res.sendFile('/root/webserver/www/fonts/Minecraft-Regular.ttf.woff');
 })
 
+app.get('/images/main.png', (req, res) => {
+  res.sendFile('/root/webserver/www/images/main.png');
+})
+
 app.get('/sitemap.txt', (req, res) => {
   res.sendFile('/root/webserver/sitemap.txt');
 })
