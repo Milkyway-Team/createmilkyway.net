@@ -27,7 +27,7 @@ app.get('/community', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/www/index.html'));
+  res.sendFile(path.join(__dirname, '/www/html/index.html'));
 })
 
 if (RUNMODE.toLowerCase() == "production") {
