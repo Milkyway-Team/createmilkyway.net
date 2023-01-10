@@ -68,6 +68,7 @@ li a {
 .main-image-container {
     font-family: 'Minecraft-Regular';
     position: relative;
+    overflow: hidden;
     text-align: center;
     color: white;
 }
