@@ -19,7 +19,7 @@ app.get('/community-server', (req, res) => {
 })
 
 app.get('/about', (req, res) => {
-  res.send('About Page')
+  res.sendFile(path.join(__dirname, '/www/html/about.html'));
 })
 
 app.get('/community', (req, res) => {
