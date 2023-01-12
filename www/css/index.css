@@ -8,12 +8,39 @@
     font-style: normal;
 }
 
+.link-open-icon {
+    padding-bottom: 4px;
+}
+
+.main-content-image-repeat {
+    background-image: url("../src/main-background-top.png"), url("../src/main-background-main.png");
+    background-position: top, center;
+    background-repeat: repeat-x, repeat;
+    background-size: 550px;
+    image-rendering: pixelated;
+}
+
 .main-content-text {
-    height: 500px;
     color: white;
     padding: 5%;
     display: flex;
     flex-direction: row;
+}
+
+.main-content-download {
+    color: white;
+    padding: 5%;
+    padding-top: 0px;
+}
+
+.main-content-download button {
+    background-color: rgb(37, 37, 37);
+    color: white;
+    border-radius: 6px;
+    border-color: rgb(22, 22, 22);
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 body {
