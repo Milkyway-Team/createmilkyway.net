@@ -14,7 +14,7 @@ function MainContent() {
                     <div className="mct-text">
                         <h1>Create: Milkyway</h1>
                         <h3>A Minecraft Modpack developed & maintained by Pouffy</h3>   
-                        <p>This modpack is based around Create and was originally developed for the <a href="/community-server">MilkywaySMP</a>. This modpack is built to have fun with friends and build awesome factories. We work close with our community to create custom production-lines and custom recipes. If you want to be part of the Milkyway community, consider joining our <a href="https://discord.gg/DyDrykhDNU">Discord Server</a>, or checking out the <a href="/community">Community page</a>.</p>
+                        <p>This modpack is based around the Create mod, and it was originally developed for the <a href="/community-server">MilkywaySMP</a>. This modpack is built to have fun with friends and build awesome factories, and we work close with our community to create custom production-lines and custom recipes. If you want to be part of the Milkyway community, consider joining our <a href="https://discord.gg/DyDrykhDNU">Discord Server</a>, or checking out the <a href="/community">Community page</a>.</p>
                         <p>We have decided to enable singleplayer compatibility so the community server is now optional. (Multiplayer is still better)</p>
                     </div>
                 </div>
