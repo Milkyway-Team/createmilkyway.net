@@ -58,7 +58,7 @@ body {
     position: absolute;
     bottom: 0;
 }
-ul {
+.navbar-ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -69,11 +69,11 @@ ul {
     background-size: 38.5em, 100%;
 }
 
-li {
+.liul {
     float: left;
 }
 
-li a {
+.liul a {
     font-family: 'Minecraft-Regular';
     display: block;
     color: white;
