@@ -8,6 +8,14 @@
     font-style: normal;
 }
 
+.main-content-text {
+    height: 500px;
+    color: white;
+    padding: 5%;
+    display: flex;
+    flex-direction: row;
+}
+
 body {
     background-color: #333;
 }
@@ -85,6 +93,10 @@ li a {
     transform: translate(-50%, -50%);
 }
 
+.mct-text {
+    padding-left: 30px;
+}
+
 .main-image-container-subtext {
     font-size: 2rem;
     position: absolute;
@@ -106,6 +118,9 @@ li a {
     }
     .main-image-container-subtext {
         font-size: 1.5rem;
+    }
+    .mct-logo {
+        display: none;
     }
 }
 

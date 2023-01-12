@@ -2,7 +2,7 @@ function NavBar() {
     return (
         <div className="navbar">
             <ul className="navbar-ul">
-                <li><a className="navbar-item active" href="">Create: Milkyway</a></li>
+                <li><a className="navbar-item active" href="/">Create: Milkyway</a></li>
                 <li><a className="navbar-item nb-hide-on-mobile" href="community">Community</a></li>
                 <li><a className="navbar-item nb-hide-on-mobile" href="community-server">Community Server</a></li>
                 <li><a className="navbar-item nb-hide-on-mobile" href="about">About</a></li>
