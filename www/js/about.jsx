@@ -2,8 +2,8 @@ function About() {
     return (
         <div className="main-content">
             <div className="main-image-container">
-                <img src="/images/main.png" className="img-bg-main"></img>
-                <h1 className="main-image-container-text">About Milkyway</h1> 
+                <img src="/images/about.png" className="img-bg-main"></img>
+                <h1 className="main-image-container-text">About Create: Milkyway</h1> 
                 <h3 className="main-image-container-subtext">Who is behind this project?</h3> 
             </div>
         </div>

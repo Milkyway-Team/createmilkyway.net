@@ -15,7 +15,7 @@ app.get('/server', (req, res) => {
 })
 
 app.get('/community-server', (req, res) => {
-  res.send('Community Server Page')
+  res.sendFile(path.join(__dirname, '/www/html/community-server.html'));
 })
 
 app.get('/about', (req, res) => {
@@ -23,7 +23,7 @@ app.get('/about', (req, res) => {
 })
 
 app.get('/community', (req, res) => {
-  res.send('Community Page')
+  res.sendFile(path.join(__dirname, '/www/html/community.html'));
 })
 
 app.get('/', (req, res) => {

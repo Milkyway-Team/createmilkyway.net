@@ -140,6 +140,9 @@ li a {
     .nb-hide-on-mobile {
         display: none;
     }
+    .main-content-download {
+        padding-left: 52px;
+    }
     .nb-button-menu {
         display: block;
     }
