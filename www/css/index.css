@@ -73,6 +73,11 @@ body {
     float: left;
 }
 
+.main-image {
+    width: 300px;
+    height: 300px;
+}
+
 .liul a {
     font-family: 'Minecraft-Regular';
     display: block;

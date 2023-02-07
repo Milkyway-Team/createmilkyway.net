@@ -23,7 +23,7 @@ function MainContent() {
             <div className="main-content-image-repeat">
                 <div className="main-content-text">
                     <div className="mct-logo">
-                        <img src="favicon.jpg"></img>
+                        <img class="main-image" src="favicon.png"></img>
                     </div>
                     <div className="mct-text">
                         <h1>Create: Milkyway</h1>

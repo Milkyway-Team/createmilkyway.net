@@ -1,0 +1,27 @@
+.l-icon {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    margin-top: 14px;
+    color: white;
+    animation-iteration-count: infinite;
+    animation-name: loadinganim;
+    animation-duration: 1.5s;
+}
+@keyframes loadinganim {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.main-content-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content-text h1 {
+    margin-right: 20px;
+}

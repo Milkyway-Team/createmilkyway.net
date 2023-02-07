@@ -1,3 +1,10 @@
+var received_data = false
+
+var online_status = "N/A"
+var online_players = "N/A"
+var max_players = "N/A"
+
+
 function NavBar() {
     return (
         <div className="navbar">
@@ -12,6 +19,12 @@ function NavBar() {
     )
 }
 
+function LoadingIcon() {
+    return (
+        <svg fill="white" className="l-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M222.7 32.1c5 16.9-4.6 34.8-21.5 39.8C121.8 95.6 64 169.1 64 256c0 106 86 192 192 192s192-86 192-192c0-86.9-57.8-160.4-137.1-184.1c-16.9-5-26.6-22.9-21.5-39.8s22.9-26.6 39.8-21.5C434.9 42.1 512 140 512 256c0 141.4-114.6 256-256 256S0 397.4 0 256C0 140 77.1 42.1 182.9 10.6c16.9-5 34.8 4.6 39.8 21.5z"/></svg>
+    )
+}
+
 function MainContent() {
     return (
         <div className="main-content">
@@ -22,28 +35,15 @@ function MainContent() {
             </div>
             <div className="main-content-image-repeat">
                 <div className="main-content-text">
-                    <div className="mct-logo">
-                        <img src="favicon.jpg"></img>
-                    </div>
-                    <div className="mct-text">
-                        <h1>Create: Milkyway</h1>
-                        <h3>A Minecraft Modpack developed & maintained by Pouffy</h3>   
-                        <p>This modpack is based around the Create mod, and it was originally developed for the <a href="/community-server">MilkywaySMP</a>. This modpack is built to have fun with friends and build awesome factories, and we work close with our community to create custom production-lines and custom recipes. If you want to be part of the Milkyway community, consider joining our <a href="https://discord.gg/DyDrykhDNU">Discord Server</a>, or checking out the <a href="/community">Community page</a>.</p>
-                        <p>We have decided to enable singleplayer compatibility so the community server is now optional. (Multiplayer is still better)</p>
-                    </div>
-                </div>
-                <div className="main-content-download">
-                    <h1>Downloads</h1>
-                    <p>Our modpack can currently be downloaded on these platforms: </p>
-                    <form action="https://www.curseforge.com/minecraft/modpacks/milkyway" method="get" target="_blank">
-                        <button type="submit">
-                            Curseforge 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="link-open-icon bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                                <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                            </svg>
-                        </button>
-                    </form>
+                    <h1>Community Server</h1>
+                    <p>We have a public server for the Milkyway Community where anyone that has interests can play on.</p>
+                    <p>You can join the server by joining our Discord server, writing your in-game name into the #minecraft-ign channel and getting the ip from #server-guide.</p>
+                    <p>Don't worry about your builds! We have a mods that allows you to claim chunks from griefers, and you can even build with your friends together!</p>
+                    <h1>Status: {(received_data) ? <h1> {online_status}</h1> : <LoadingIcon />}</h1>
+                    <br></br>
+                    <h1>Online players: </h1>
+                    {(received_data) ? <h1> {online_players}/{max_players}</h1> : <LoadingIcon />}
+                    <br />
                 </div>
             </div>
         </div>
@@ -58,6 +58,47 @@ function Homepage() {
         </div>
     )
 }
+
+function NaBadge() {
+    return (
+        <span class="badge bg-secondary">N/A</span>
+    )
+}
+
+function OfflineBadge() {
+    return (
+        <span class="badge bg-danger">Offline</span>
+    )
+}
+
+function OnlineBadge() {
+    return (
+        <span class="badge bg-success">Online</span>
+    )
+}
+
+fetch('/api/server-status')
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data);
+        if (data.status == "cached-result" || data.status == "success") {
+            online_status = (data.online) ? <OnlineBadge /> : <OfflineBadge />
+            online_players = data["players-online"]
+            max_players = data["max-players"]
+            received_data = true
+            root.render(<Homepage />)
+        } else {
+            online_status = <NaBadge />
+            online_players = <NaBadge />
+            max_players = <NaBadge />
+            received_data = true
+            root.render(<Homepage />)
+        }
+    })
+    .catch((err) => {
+        console.log(err.message);
+    });
+
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);

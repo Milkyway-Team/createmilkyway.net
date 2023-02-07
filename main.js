@@ -33,10 +33,22 @@ class MinecraftServer {
   }
 }
 
+class DiscordUser {
+  constructor (name, avatar, status) {
+    this.status = status;
+    this.avatar = avatar;
+    this.name = name;
+  }
+}
+
+t = new DiscordUser("sad","asd","sd");
+
+
+
 minecraftServer = new MinecraftServer("createmilkyway.net", 25565);
 
 setInterval(() => {
-  console.log(minecraftServer.online)
+  //console.log(minecraftServer.online)
 })
 
 app.use(express.static(path.join(__dirname, 'www')))
@@ -45,7 +57,16 @@ setInterval(() => {
   axios.get('https://api.mcsrvstat.us/2/createmilkyway.net', {
   })
   .then(function (response) {
-    console.log(response);
+    //console.log("response");
+    if (response.data.debug.ping) {
+      minecraftServer.version = response.data.version
+      minecraftServer.port = response.data.port
+      minecraftServer.server = response.data.hostname
+      minecraftServer.online = response.data.online
+      minecraftServer.playersOnline = response.data.players.online
+      minecraftServer.maxPlayers = response.data.players.max
+      minecraftServer.playerList = response.data.players.list
+    }
   })
   .catch(function (error) {
     console.log(error);
@@ -71,6 +92,29 @@ app.get('/community', (req, res) => {
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/www/html/index.html'));
 })
+
+app.get('/api/get-important-users', (req, res) => {
+  res.status(200).json(
+    {
+      "status": "cached-result", //can also be "no-data"
+      "users": []
+    }
+  )
+})
+
+app.get('/api/server-status', (req, res) => {
+  res.status(200).json(
+    {
+      "status": "cached-result", //can also be "no-data"
+      "online": minecraftServer.online,
+      "players-online": minecraftServer.playersOnline,
+      "max-players": minecraftServer.maxPlayers,
+      "player-list": minecraftServer.playerList,
+      "server-version": minecraftServer.version
+    }
+  )
+})
+
 
 if (RUNMODE.toLowerCase() == "production") {
   var privateKey = fs.readFileSync( 'privkey.pem' );
