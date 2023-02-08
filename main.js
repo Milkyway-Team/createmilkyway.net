@@ -73,10 +73,6 @@ setInterval(() => {
   });  
 }, 2000)
 
-app.get('/server', (req, res) => {
-  res.send('Server Page')
-})
-
 app.get('/community-server', (req, res) => {
   res.sendFile(path.join(__dirname, '/www/html/community-server.html'));
 })
@@ -91,6 +87,10 @@ app.get('/community', (req, res) => {
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/www/html/index.html'));
+})
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '/www/html/login.html'));
 })
 
 app.get('/api/get-important-users', (req, res) => {
