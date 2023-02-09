@@ -93,6 +93,17 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, '/www/html/login.html'));
 })
 
+//get request when user submits form
+app.get('/login-token', (req, res) => {
+  //get email and password from request header
+  email = req.headers.email;
+  password = req.headers.password;
+
+  console.log(email);
+  console.log(password);
+  res.sendStatus(200);
+})
+
 app.get('/api/get-important-users', (req, res) => {
   res.status(200).json(
     {

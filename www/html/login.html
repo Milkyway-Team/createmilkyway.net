@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Sign up - Brand</title>
+    <title>Sign in - Milkyway Administrator</title>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="icon" type="image/x-icon" href="/favicon.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <script type="text/javascript" src="/js/login.js"></script>
 </head>
 
 <body>
@@ -25,10 +26,10 @@
                     <div class="card">
                         <div class="card-body text-center d-flex flex-column align-items-center">
                             <div class="bs-icon-xl bs-icon-circle bs-icon-primary shadow bs-icon my-4"><img style="width: 130px;padding-bottom: 20px;" src="../images/qm36mgn42br81.png"></div>
-                            <form method="post">
-                                <div class="mb-3"><input class="form-control form-email" type="email" name="email" placeholder="Email" style="color: var(--bs-purple);"></div>
-                                <div class="mb-3"><input class="form-control form-password" type="password" name="password" placeholder="Password"></div>
-                                <div class="mb-3"><button class="btn btn-primary shadow d-block w-100" type="submit">Log In</button></div>
+                            <form action="">
+                                <div class="mb-3"><input class="form-control" id="form-email" type="email" name="email" placeholder="Email" style="color: var(--bs-purple);"></div>
+                                <div class="mb-3"><input class="form-control" id="form-password" type="password" name="password" placeholder="Password"></div>
+                                <div class="mb-3"><button class="btn btn-primary shadow d-block w-100" type="submit" onclick="submitForm()">Log In</button></div>
                             </form>
                         </div>
                     </div>
