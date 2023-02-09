@@ -1,4 +1,5 @@
 console.log("login.jsx loaded");
+console.log(getCookie("token"));
 
 function submitForm() {
     emailField = document.getElementById('form-email');
@@ -17,13 +18,14 @@ function submitForm() {
             'password': password
         }
     })
-    .then(function (response) {
-        if (response.status == 200) {
-            console.log("Login successful");
-        }
-    })
-    .then(function (data) {
-        console.log(data);
+    .then((response) => response.json())
+    .then((responseData) => {
+      console.log(responseData.status);
+      if (responseData.status == "success") {
+        console.log(responseData.token);
+        setCookie("token", responseData.token, 1);
+        window.location.href = "http://localhost/dashboard";
+      }
     })
     console.log("Login data sent to server");
 }
