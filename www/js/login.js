@@ -1,5 +1,4 @@
 console.log("login.jsx loaded");
-console.log(getCookie("token"));
 
 function submitForm() {
     emailField = document.getElementById('form-email');
@@ -24,6 +23,7 @@ function submitForm() {
       if (responseData.status == "success") {
         console.log(responseData.token);
         setCookie("token", responseData.token, 1);
+        setCookie("email", email, 1);
         window.location.href = "http://localhost/dashboard";
       }
     })

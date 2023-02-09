@@ -140,6 +140,8 @@ app.get('/check-token', (req, res) => {
   email = req.headers.email
   token = req.headers.token
 
+  
+
   getUserByToken(token).then((user) => {
     if (user != null) {
       if (token == user.token && email == user.email) {
