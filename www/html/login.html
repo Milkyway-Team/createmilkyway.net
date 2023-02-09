@@ -26,10 +26,10 @@
                     <div class="card">
                         <div class="card-body text-center d-flex flex-column align-items-center">
                             <div class="bs-icon-xl bs-icon-circle bs-icon-primary shadow bs-icon my-4"><img style="width: 130px;padding-bottom: 20px;" src="../images/qm36mgn42br81.png"></div>
-                            <form action="">
+                            <form onsubmit="submitForm(); return false;">
                                 <div class="mb-3"><input class="form-control" id="form-email" type="email" name="email" placeholder="Email" style="color: var(--bs-purple);"></div>
                                 <div class="mb-3"><input class="form-control" id="form-password" type="password" name="password" placeholder="Password"></div>
-                                <div class="mb-3"><button class="btn btn-primary shadow d-block w-100" type="submit" onclick="submitForm()">Log In</button></div>
+                                <div class="mb-3"><button class="btn btn-primary shadow d-block w-100" type="submit" value="submit">Log In</button></div>
                             </form>
                         </div>
                     </div>

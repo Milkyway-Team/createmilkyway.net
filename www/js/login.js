@@ -9,7 +9,7 @@ function submitForm() {
     //send GET request to server with email and password to /login-token
     //if successful, redirect to /dashboard
     //if not, display error message
-    fetch('/login-token', {
+    fetch('http://localhost/login-token', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -21,6 +21,9 @@ function submitForm() {
         if (response.status == 200) {
             console.log("Login successful");
         }
+    })
+    .then(function (data) {
+        console.log(data);
     })
     console.log("Login data sent to server");
 }
