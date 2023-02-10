@@ -139,9 +139,6 @@ app.get('/login', (req, res) => {
 app.get('/check-token', (req, res) => {
   email = req.headers.email
   token = req.headers.token
-
-  
-
   getUserByToken(token).then((user) => {
     if (user != null) {
       if (token == user.token && email == user.email) {
@@ -155,10 +152,24 @@ app.get('/check-token', (req, res) => {
   })
 })
 
+//function to filter any characters that could cause a sql injection
+function filterSQLCharacters(string) {
+  string = string.replace(/'/g, "''");
+  string = string.replace(/"/g, '""');
+  string = string.replace(/;/g, '');
+  string = string.replace(/--/g, '');
+  string = string.replace(/#/g, '');
+  string = string.replace(/\\/g, '');
+  string = string.replace(/%/g, '');
+  string = string.replace(/_/g, '');
+  string = string.replace(/=/g, '');
+  string = string.replace(/`/g, '');
+  return string;
+}
 //get request when user submits form
 app.get('/login-token', (req, res) => {
   //get email and password from request header
-  email = req.headers.email;
+  email = filterSQLCharacters(req.headers.email);
   password = req.headers.password;
 
   getUserByEmail(email).then((user) => {
@@ -211,6 +222,7 @@ app.get('/api/server-status', (req, res) => {
     }
   )
 })
+
 
 
 if (RUNMODE.toLowerCase() == "production") {
