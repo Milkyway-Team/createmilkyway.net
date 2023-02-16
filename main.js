@@ -93,7 +93,7 @@ setInterval(() => {
 app.use(express.static(path.join(__dirname, 'www')))
 
 setInterval(() => {
-  axios.get('https://api.mcsrvstat.us/2/createmilkyway.net', {
+  axios.get('https://api.mcsrvstat.us/1/createmilkyway.net', {
   })
   .then(function (response) {
     //console.log("response");

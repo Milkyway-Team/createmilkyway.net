@@ -9,7 +9,7 @@ function submitForm() {
     //send GET request to server with email and password to /login-token
     //if successful, redirect to /dashboard
     //if not, display error message
-    fetch('https://createmilkyway.net/login-token', {
+    fetch('http://localhost/login-token', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ function submitForm() {
         console.log(responseData.token);
         setCookie("token", responseData.token, 1);
         setCookie("email", email, 1);
-        window.location.href = "https://createmilkyway.net/dashboard";
+        window.location.href = "http://localhost/dashboard";
       }
     })
     console.log("Login data sent to server");
