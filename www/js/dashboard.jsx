@@ -1,6 +1,36 @@
 var _username = getCookie("email")
+var received_data = false
+var online_status = "N/A"
+var online_players = "N/A"
+var max_players = "N/A"
+var used_ram = "N/A"
+var max_ram = "N/A"
 
 
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container);
+
+fetch('/api/server-status')
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data);
+        if (data.status == "cached-result" || data.status == "success") {
+            online_status = (data.online) ? "Online" : "Offline"
+            online_players = data["players-online"]
+            max_players = data["max-players"]
+            received_data = true
+            root.render(<Dashboard />)
+        } else {
+            online_status = "N/A"
+            online_players = "N/A"
+            max_players = "N/A"
+            received_data = true
+            root.render(<Dashboard />)
+        }
+    })
+    .catch((err) => {
+        console.log(err.message);
+    });
 
 
 if (getCookie("token") != "" && getCookie("email") != "") {
@@ -49,7 +79,7 @@ function getCookie(cname) {
 }
 
 function Dashboard() {
-
+    
     function logout() {
         setCookie("token", "", -1)
         window.location.href = "/login";
@@ -80,50 +110,6 @@ function Dashboard() {
                                         </div>
                                     </li>
                                     <li className="nav-item dropdown no-arrow mx-1">
-                                        <div className="nav-item dropdown no-arrow"><a className="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span className="badge bg-danger badge-counter">3+</span><i className="fas fa-bell fa-fw"></i></a>
-                                            <div className="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                                <h6 className="dropdown-header">Notifications</h6><a className="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li className="nav-item dropdown no-arrow mx-1">
-                                        <div className="nav-item dropdown no-arrow"><a className="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"></a>
-                                            <div className="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                                <h6 className="dropdown-header">alerts center</h6><a className="dropdown-item d-flex align-items-center" href="#">
-                                                    <div className="dropdown-list-image me-3"><img className="rounded-circle" src="assets/img/avatars/avatar4.jpeg" />
-                                                        <div className="bg-success status-indicator"></div>
-                                                    </div>
-                                                    <div className="fw-bold">
-                                                        <div className="text-truncate"><span>Hi there! I am wondering if you can help me with a problem I've been having.</span></div>
-                                                        <p className="small text-gray-500 mb-0">Emily Fowler - 58m</p>
-                                                    </div>
-                                                </a><a className="dropdown-item d-flex align-items-center" href="#">
-                                                    <div className="dropdown-list-image me-3"><img className="rounded-circle" src="assets/img/avatars/avatar2.jpeg" />
-                                                        <div className="status-indicator"></div>
-                                                    </div>
-                                                    <div className="fw-bold">
-                                                        <div className="text-truncate"><span>I have the photos that you ordered last month!</span></div>
-                                                        <p className="small text-gray-500 mb-0">Jae Chun - 1d</p>
-                                                    </div>
-                                                </a><a className="dropdown-item d-flex align-items-center" href="#">
-                                                    <div className="dropdown-list-image me-3"><img className="rounded-circle" src="assets/img/avatars/avatar3.jpeg" />
-                                                        <div className="bg-warning status-indicator"></div>
-                                                    </div>
-                                                    <div className="fw-bold">
-                                                        <div className="text-truncate"><span>Last month's report looks great, I am very happy with the progress so far, keep up the good work!</span></div>
-                                                        <p className="small text-gray-500 mb-0">Morgan Alvarez - 2d</p>
-                                                    </div>
-                                                </a><a className="dropdown-item d-flex align-items-center" href="#">
-                                                    <div className="dropdown-list-image me-3"><img className="rounded-circle" src="assets/img/avatars/avatar5.jpeg" />
-                                                        <div className="bg-success status-indicator"></div>
-                                                    </div>
-                                                    <div className="fw-bold">
-                                                        <div className="text-truncate"><span>Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</span></div>
-                                                        <p className="small text-gray-500 mb-0">Chicken the Dog · 2w</p>
-                                                    </div>
-                                                </a><a className="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                                            </div>
-                                        </div>
                                         <div className="shadow dropdown-list dropdown-menu dropdown-menu-end" aria-labelledby="alertsDropdown"></div>
                                     </li>
                                     <div className="d-none d-sm-block topbar-divider"></div>
@@ -163,7 +149,7 @@ function Dashboard() {
                                             <div className="row align-items-center no-gutters">
                                                 <div className="col me-2">
                                                     <div className="text-uppercase text-primary fw-bold text-xs mb-1"><span>Online players</span></div>
-                                                    <div className="text-dark fw-bold h5 mb-0"><span>3/20</span></div>
+                                                    <div className="text-dark fw-bold h5 mb-0"><span>{online_players + "/" + max_players}</span></div>
                                                 </div>
                                                 <div className="col-auto"><i className="fas fa-users fa-2x text-gray-300"></i></div>
                                             </div>
@@ -233,6 +219,4 @@ function Dashboard() {
     )
 }
 
-const container = document.getElementById('root');
-const root = ReactDOM.createRoot(container);
 root.render(<Dashboard />);
