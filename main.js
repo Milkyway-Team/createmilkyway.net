@@ -14,6 +14,7 @@ var crypto = require('crypto');
 const { time } = require('console')
 //import library for getting ram usage from system
 const si = require('systeminformation');
+const sendMail = require('./email');
 
 const client = new MongoClient(dbUri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect(err => {
@@ -96,7 +97,37 @@ systemInfo = new System();
 
 t = new DiscordUser("sad","asd","sd");
 
+function sendPasswordResetEmail(_email) {
+  getUserByEmail(_email).then((user) => {
+    if (user != null) {
+      console.log(user.email)
+      const sendPwdReset = async () => {      
+        const options = {
+          from: 'Milkyway Team <createmilkywaymodpack@gmail.com>',
+          to: user.email,
+          cc: '',
+          //replyTo: 'amit@labnol.org',
+          subject: 'Password Reset 🔐',
+          text: 'This email is sent from the command line',
+          html: `<p>Hey <b>${user.username}</b>, </p> <p> looks like you forgot your password once again. Click this <a href="https://digitalinspiration.com">Link</a> to reset your password.</p> <p>If you don't know anything about a password reset, ignore or delete this email.</p>`,
+          //attachments: fileAttachments,
+          textEncoding: 'base64',
+          headers: [
+            { key: 'X-Application-Developer', value: 'Joel Herbst' },
+            { key: 'X-Application-Version', value: 'v1.0.0.0' },
+          ],
+        };
+      
+        const messageId = await sendMail(options);
+        return messageId;
+      };
 
+      sendPwdReset()
+    }
+  })
+}
+
+sendPasswordResetEmail("joelherbst07@gmail.com")
 
 minecraftServer = new MinecraftServer("createmilkyway.net", 25565);
 
