@@ -2,7 +2,8 @@
 privkey.pem
 cert.pem
 dbUri.txt
-cache
+www/CDN/*
 credentials.json
-.gitignore
+gmailToken.json
+credentials.json
 gmailToken.json
