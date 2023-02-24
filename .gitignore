@@ -3,3 +3,6 @@ privkey.pem
 cert.pem
 dbUri.txt
 cache
+credentials.json
+.gitignore
+gmailToken.json
