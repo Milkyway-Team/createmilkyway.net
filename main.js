@@ -6,11 +6,15 @@ const app = express() //Initialize Express App
 const path = require('path') //Path Library
 const securePort = 443 //HTTPS PORT
 const port = 80 //HTTP PORT
+const os = require('os'); //OS Library
 const RUNMODE = "DEV" //DEV or PRODUCTION
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const dbUri = fs.readFileSync("dbUri.txt", "utf8")
 var crypto = require('crypto');
 const { time } = require('console')
+//import library for getting ram usage from system
+const si = require('systeminformation');
+const sendMail = require('./email');
 
 const client = new MongoClient(dbUri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect(err => {
@@ -80,9 +84,50 @@ class DiscordUser {
   }
 }
 
+class System {
+  constructor () {
+    this.cpuUsage = 0;
+    this.ramUsage = os.totalmem - os.freemem;
+    this.freeRam = os.freemem;
+    this.totalRam = os.totalmem;
+  }
+}
+
+systemInfo = new System();
+
 t = new DiscordUser("sad","asd","sd");
 
+function sendPasswordResetEmail(_email) {
+  getUserByEmail(_email).then((user) => {
+    if (user != null) {
+      console.log(user.email)
+      const sendPwdReset = async () => {      
+        const options = {
+          from: 'Milkyway Team <createmilkywaymodpack@gmail.com>',
+          to: user.email,
+          cc: '',
+          //replyTo: 'amit@labnol.org',
+          subject: 'Password Reset 🔐',
+          text: 'This email is sent from the command line',
+          html: `<p>Hey <b>${user.username}</b>, </p> <p> looks like you forgot your password once again. Click this <a href="https://digitalinspiration.com">Link</a> to reset your password.</p> <p>If you don't know anything about a password reset, ignore or delete this email.</p>`,
+          //attachments: fileAttachments,
+          textEncoding: 'base64',
+          headers: [
+            { key: 'X-Application-Developer', value: 'Joel Herbst' },
+            { key: 'X-Application-Version', value: 'v1.0.0.0' },
+          ],
+        };
+      
+        const messageId = await sendMail(options);
+        return messageId;
+      };
 
+      sendPwdReset()
+    }
+  })
+}
+
+sendPasswordResetEmail("joelherbst07@gmail.com")
 
 minecraftServer = new MinecraftServer("createmilkyway.net", 25565);
 
@@ -93,7 +138,7 @@ setInterval(() => {
 app.use(express.static(path.join(__dirname, 'www')))
 
 setInterval(() => {
-  axios.get('https://api.mcsrvstat.us/2/createmilkyway.net', {
+  axios.get('https://api.mcsrvstat.us/1/createmilkyway.net', {
   })
   .then(function (response) {
     //console.log("response");
@@ -218,7 +263,9 @@ app.get('/api/server-status', (req, res) => {
       "players-online": minecraftServer.playersOnline,
       "max-players": minecraftServer.maxPlayers,
       "player-list": minecraftServer.playerList,
-      "server-version": minecraftServer.version
+      "server-version": minecraftServer.version,
+      //return the server ram usage, cpu usage, and disk usage
+      "server-ram-usage": si.ram().then(data => data),
     }
   )
 })
@@ -239,3 +286,17 @@ if (RUNMODE.toLowerCase() == "production") {
   })
   
 }
+
+
+ldavg = os.loadavg();
+setInterval(() => {
+  systemInfo.ramUsage = os.totalmem - os.freemem;
+  systemInfo.freeRam = os.freemem;
+  systemInfo.totalRam = os.totalmem;
+  systemInfo.cpuUsage = ldavg[0]
+  console.log(systemInfo.cpuUsage)
+}, 2000)
+
+setInterval(() => {
+  ldavg = os.loadavg();
+}, 61000)
