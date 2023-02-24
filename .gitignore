@@ -3,3 +3,5 @@ privkey.pem
 cert.pem
 dbUri.txt
 www/CDN/*
+credentials.json
+gmailToken.json
