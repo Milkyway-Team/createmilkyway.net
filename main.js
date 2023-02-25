@@ -122,12 +122,15 @@ function sendPasswordResetEmail(_email) {
         return messageId;
       };
 
-      sendPwdReset()
+      sendPwdReset().then((messageId) => {
+        console.log(messageId);
+      }
+      ).catch((err) => {
+        console.log(err);
+      });
     }
   })
 }
-
-sendPasswordResetEmail("joelherbst07@gmail.com")
 
 minecraftServer = new MinecraftServer("createmilkyway.net", 25565);
 
@@ -171,6 +174,10 @@ app.get('/community', (req, res) => {
 
 app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, '/www/html/dashboard.html'));
+})
+
+app.get('/forgot-password', (req, res) => {
+  res.sendFile(path.join(__dirname, '/www/html/forgot-password.html'));
 })
 
 app.get('/', (req, res) => {
@@ -245,6 +252,17 @@ app.get('/login-token', (req, res) => {
     }
   });
 })
+
+app.get('/forgot-password-data', (req, res) => {
+  email = filterSQLCharacters(req.headers.email);
+  sendPasswordResetEmail(email)
+  res.send(JSON.stringify(
+    {
+      "status": "success"
+    }
+  ))
+})
+
 
 app.get('/api/get-important-users', (req, res) => {
   res.status(200).json(
